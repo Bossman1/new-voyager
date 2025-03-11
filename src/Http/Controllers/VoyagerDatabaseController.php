@@ -69,7 +69,10 @@ class VoyagerDatabaseController extends Controller
 
         try {
             $conn = 'database.connections.'.config('database.default');
-            Type::registerCustomPlatformTypes();
+
+            $platform = SchemaManager::getDatabasePlatform();
+
+            Type::registerCustomPlatformTypes($platform);
 
             $table = $request->table;
             if (!is_array($request->table)) {
