@@ -43,12 +43,11 @@ abstract class Type extends DoctrineType
         if (static::$platformTypes) {
             return static::$platformTypes;
         }
-
+        $platform = SchemaManager::getDatabasePlatform();
         if (!static::$customTypesRegistered) {
-            static::registerCustomPlatformTypes();
+            static::registerCustomPlatformTypes($platform);
         }
 
-        $platform = SchemaManager::getDatabasePlatform();
 
         static::$platformTypes = Platform::getPlatformTypes(
             $platform->getName(),
@@ -75,7 +74,7 @@ abstract class Type extends DoctrineType
         return static::$platformTypeMapping;
     }
 
-    public static function registerCustomPlatformTypes($force = false)
+    public static function registerCustomPlatformTypes($platform,$force = false)
     {
         if (static::$customTypesRegistered && !$force) {
             return;
