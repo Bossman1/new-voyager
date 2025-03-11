@@ -80,7 +80,10 @@ abstract class Type extends DoctrineType
             return;
         }
 
-        $platform = SchemaManager::getDatabasePlatform();
+        if (is_null($platform)){
+            $platform = SchemaManager::getDatabasePlatform();
+        }
+
         $platformName = ucfirst($platform->getName());
 
         $customTypes = array_merge(
