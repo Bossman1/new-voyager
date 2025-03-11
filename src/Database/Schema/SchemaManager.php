@@ -6,10 +6,11 @@ use Doctrine\DBAL\Schema\SchemaException;
 use Doctrine\DBAL\Schema\Table as DoctrineTable;
 use Illuminate\Support\Facades\DB;
 use TCG\Voyager\Database\Types\Type;
+use Doctrine\DBAL\DriverManager;
 
 abstract class SchemaManager
 {
-    // todo: trim parameters
+
 
     public static function __callStatic($method, $args)
     {
@@ -18,7 +19,16 @@ abstract class SchemaManager
 
     public static function manager()
     {
-        return DB::connection()->getDoctrineSchemaManager();
+        $config = new \Doctrine\DBAL\Configuration();
+        $connectionParams = [
+            'dbname' => env('DB_DATABASE'),
+            'user' => env('DB_USERNAME'),
+            'password' => env('DB_PASSWORD'),
+            'host' => env('DB_HOST'),
+            'driver' => 'pdo_mysql',
+        ];
+        $conn = DriverManager::getConnection($connectionParams, $config);
+        return $conn->createSchemaManager();
     }
 
     public static function getDatabaseConnection()
