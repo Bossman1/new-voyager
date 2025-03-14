@@ -28,6 +28,8 @@ abstract class SchemaManager
             'driver' => 'pdo_mysql',
         ];
         $conn = DriverManager::getConnection($connectionParams, $config);
+        $platform = $conn->getDatabasePlatform();
+        $platform->registerDoctrineTypeMapping('enum', 'string');
         return $conn->createSchemaManager();
     }
 
