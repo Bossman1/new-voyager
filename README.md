@@ -58,6 +58,11 @@
    ```bash
    composer require nick-kh/new-voyager
    ```
+   Note: if you receive error like this:
+   - laravel/framework is locked to version v12.2.0 and an update of this package was not requested.
+   - carbonphp/carbon-doctrine-types 3.2.0 conflicts with doctrine/dbal 3.9.2.
+   Just delete composer.lock file and run command again
+
 
 2. **Choose installation type:**
    ```bash
