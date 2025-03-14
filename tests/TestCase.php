@@ -84,7 +84,7 @@ class TestCase extends OrchestraTestCase
 
     protected function install()
     {
-        $this->artisan('voyager:install', ['--with-dummy' => $this->withDummy]);
+        $this->artisan('new-voyager:install', ['--with-dummy' => $this->withDummy]);
 
         app(VoyagerServiceProvider::class, ['app' => $this->app])->loadAuth();
 

@@ -16,7 +16,7 @@ class AdminCommand extends Command
      *
      * @var string
      */
-    protected $name = 'voyager:admin';
+    protected $name = 'new-voyager:admin';
 
     /**
      * The console command description.

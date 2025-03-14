@@ -16,7 +16,7 @@ class InstallCommand extends Command
      *
      * @var string
      */
-    protected $name = 'voyager:install';
+    protected $name = 'new-voyager:install';
 
     /**
      * The console command description.
